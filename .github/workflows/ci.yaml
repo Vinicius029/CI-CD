@@ -1,12 +1,35 @@
-name: CI Pipeline
+name: CI/CD Pipeline
 
 on:
   push:
     branches: [main]
 
 jobs:
-  build-and-push:
+  ci:
     runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Configurar NodeJS
+        uses: actions/setup-node@v6.3.0
+        with:
+          node-version: 24
+
+      - name: Verificar sintaxe do código
+        run: node --check index.js
+
+      - name: Smoke test — servidor sobe e responde
+        run: |
+          node index.js &
+          sleep 2
+          curl -f http://localhost:3000/health
+          kill %1
+
+  cd:
+    runs-on: ubuntu-latest
+    needs: ci # Só ira rodar se o CI passar
 
     steps:
       - name: Checkout de código
