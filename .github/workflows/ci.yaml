@@ -22,4 +22,4 @@ jobs:
         uses: docker/build-push-action@v7.0.0
         with:
           push: true
-          tags: user/nodeteste:v1
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/nodeteste:v1
