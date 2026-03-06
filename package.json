@@ -1,0 +1,11 @@
+{
+  "name": "ci-cd",
+  "version": "1.0.0",
+  "description": "API Node.js com CI/CD",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo 'Nenhum teste configurado' && exit 0",
+    "build": "echo 'Build OK'"
+  }
+}
